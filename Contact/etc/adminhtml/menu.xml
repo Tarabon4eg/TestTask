@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Smile_Contact::contact_entity_menu"
+             title="Contact Us"
+             module="Smile_Contact"
+             resource="Smile_Contact::contact_entity"
+             translate="title toolTip"
+             sortOrder="25"
+             toolTip="Contact Us Menu" />
+        <add id="Smile_Contact::contact_entity_menu_grid"
+             title="Contact Us Control Menu"
+             module="Smile_Contact"
+             resource="Smile_Contact::contact_entity_menu"
+             translate="title"
+             parent="Smile_Contact::contact_entity_menu"
+             action="contact/entity/index" />
+    </menu>
+</config>

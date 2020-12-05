@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">contact_entity_index_listing.contact_entity_index_listing_source</item>
+            <item name="deps" xsi:type="string">contact_entity_index_listing.contact_entity_index_listing_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">contact_entity_index_listing_columns</item>
+    </argument>
+    <dataSource name="contact_entity_index_listing_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Smile\Contact\Ui\DataProvider\ContactEntity</argument>
+            <argument name="name" xsi:type="string">contact_entity_index_listing_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">contact_entity_index_listing.contact_entity_index_listing.contact_entity_index_listing_columns.ids</item>
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="contact/entity/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="contact_entity_index_listing_columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">contact_entity_index_listing.contact_entity_index_listing.contact_entity_index_listing_columns.actions</item>
+                    <item name="target" xsi:type="string">applyAction</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">edit</item>
+                        <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="name" sortOrder="25">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Contact Author</label>
+            </settings>
+        </column>
+        <column name="customer_id" sortOrder="30" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Smile\Contact\Model\Entity\CustomersOptions"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Is Store Customer</label>
+            </settings>
+        </column>
+        <column name="is_processed" sortOrder="40" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Smile\Contact\Model\Entity\Attribute\StatusOptions"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Created at</item>
+                    <item name="filter" xsi:type="string">dateRange</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions" class="Smile\Contact\Ui\Component\Listing\Columns\ContactEntityActions" sortOrder="60">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="viewUrl" xsi:type="string">contact/entity/edit</item>
+                    <item name="idUrlParam" xsi:type="string">id</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>
