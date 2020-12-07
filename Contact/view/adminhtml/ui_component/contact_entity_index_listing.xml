@@ -9,7 +9,7 @@
     </argument>
     <dataSource name="contact_entity_index_listing_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Smile\Contact\Ui\DataProvider\ContactEntity</argument>
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
             <argument name="name" xsi:type="string">contact_entity_index_listing_source</argument>
             <argument name="primaryFieldName" xsi:type="string">id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
