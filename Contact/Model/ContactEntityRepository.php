@@ -15,7 +15,6 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsInterface;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Message\ManagerInterface;
 use Smile\Contact\Api\ContactEntityRepositoryInterface;
 use Smile\Contact\Api\Data\ContactEntityInterface;
 use Smile\Contact\Api\Data\ContactEntityInterfaceFactory;
@@ -55,11 +54,6 @@ class ContactEntityRepository implements ContactEntityRepositoryInterface
     protected $searchResultsFactory;
 
     /**
-     * @var ManagerInterface
-     */
-    protected $messageManager;
-
-    /**
      * ContactEntityRepository constructor.
      *
      * @param ResourceContactEntity $resourceModel
@@ -67,22 +61,19 @@ class ContactEntityRepository implements ContactEntityRepositoryInterface
      * @param CollectionFactory $collectionFactory
      * @param CollectionProcessorInterface $processor
      * @param SearchResultsInterfaceFactory $searchResultsFactory
-     * @param ManagerInterface $messageManager
      */
     public function __construct(
         ResourceContactEntity $resourceModel,
         ContactEntityInterfaceFactory $modelFactory,
         CollectionFactory $collectionFactory,
         CollectionProcessorInterface $processor,
-        SearchResultsInterfaceFactory $searchResultsFactory,
-        ManagerInterface $messageManager
+        SearchResultsInterfaceFactory $searchResultsFactory
     ) {
         $this->resourceModel = $resourceModel;
         $this->modelFactory = $modelFactory;
         $this->collectionFactory = $collectionFactory;
         $this->processor = $processor;
         $this->searchResultsFactory = $searchResultsFactory;
-        $this->messageManager = $messageManager;
     }
 
     /**
@@ -137,10 +128,7 @@ class ContactEntityRepository implements ContactEntityRepositoryInterface
      */
     public function delete(ContactEntityInterface $model)
     {
-        try {
-            $this->resourceModel->delete($model);
-        } catch (\Exception $e) {
-        }
+        $this->resourceModel->delete($model);
     }
 
     /**
@@ -152,11 +140,8 @@ class ContactEntityRepository implements ContactEntityRepositoryInterface
      */
     public function save(ContactEntityInterface $model)
     {
-        try {
-            $this->resourceModel->save($model);
-            return $model;
-        } catch (\Magento\Framework\Validator\Exception $e) {
-            $this->messageManager->addErrorMessage($e->getMessage());
-        }
+        $this->resourceModel->save($model);
+        return $model;
+
     }
 }

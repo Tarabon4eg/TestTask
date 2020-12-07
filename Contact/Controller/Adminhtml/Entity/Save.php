@@ -75,6 +75,8 @@ class Save extends AbstractAction implements HttpPostActionInterface
         $model->setData($data);
         try {
             $this->contactEntityRepository->save($model);
+        } catch (\Magento\Framework\Validator\Exception $e) {
+            $this->messageManager->addErrorMessage($e->getMessage());
         } catch (Exception $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         }

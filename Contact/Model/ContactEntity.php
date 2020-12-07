@@ -61,7 +61,7 @@ class ContactEntity extends AbstractModel implements ContactEntityInterface
     }
 
     /**
-     * Get Is active
+     * Get Is Processed
      *
      * @return bool
      */
@@ -71,7 +71,7 @@ class ContactEntity extends AbstractModel implements ContactEntityInterface
     }
 
     /**
-     * Get customer id
+     * Get Customer Id
      *
      * @return int|null
      */

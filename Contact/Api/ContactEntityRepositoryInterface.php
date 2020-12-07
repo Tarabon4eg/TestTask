@@ -20,6 +20,8 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 interface ContactEntityRepositoryInterface
 {
     /**
+     * Get By ID
+     *
      * @param int $id
      * @return \Smile\Contact\Api\Data\ContactEntityInterface
      * @throws \Magento\Framework\Exception\NoSuchEntityException
@@ -27,18 +29,24 @@ interface ContactEntityRepositoryInterface
     public function getById(int $id);
 
     /**
+     * Get List
+     *
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
      * @return \Smile\Contact\Api\Data\
      */
     public function getList(SearchCriteriaInterface $criteria);
 
     /**
+     * Delete
+     *
      * @param \Smile\Contact\Api\Data\ContactEntityInterface $model
      * @return bool
      */
     public function delete(Data\ContactEntityInterface $model);
 
     /**
+     * Save
+     *
      * @param \Smile\Contact\Api\Data\ContactEntityInterface $model
      * @return \Smile\Contact\Api\Data\ContactEntityInterface
      */

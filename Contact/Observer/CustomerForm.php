@@ -16,6 +16,7 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\View\Page\Config;
+use Magento\Framework\Message\ManagerInterface;
 use Smile\Contact\Api\ContactEntityRepositoryInterface;
 use Smile\Contact\Api\Data\ContactEntityInterface;
 use Smile\Contact\Api\Data\ContactEntityInterfaceFactory;
@@ -54,6 +55,12 @@ class CustomerForm implements ObserverInterface
     protected $config;
 
     /**
+     * @var ManagerInterface
+     */
+    protected $messageManager;
+
+
+    /**
      * CustomerForm constructor
      *
      * @param ContactForm $contactForm
@@ -61,25 +68,29 @@ class CustomerForm implements ObserverInterface
      * @param ContactEntityInterfaceFactory $contactEntityFactory
      * @param Session $customerSession
      * @param Config $config
+     * @param ManagerInterface $messageManager
      */
     public function __construct(
         ContactEntityRepositoryInterface $contactEntityRepository,
         ContactEntityInterfaceFactory $contactEntityFactory,
         Session $customerSession,
         ContactForm $contactForm,
-        Config $config
+        Config $config,
+        ManagerInterface $messageManager
     ) {
         $this->contactForm = $contactForm;
         $this->contactEntityRepository = $contactEntityRepository;
         $this->contactEntityFactory = $contactEntityFactory;
         $this->customerSession = $customerSession;
         $this->config = $config;
+        $this->messageManager = $messageManager;
     }
 
     /**
      * Storing post data from contact form in database
      *
      * @inheritdoc
+     * @throws \Magento\Framework\Validator\Exception
      */
     public function execute(Observer $observer)
     {
@@ -92,6 +103,10 @@ class CustomerForm implements ObserverInterface
             ->setEmail($request['email'])
             ->setTelephone($request['telephone'])
             ->setComment($request['comment']);
-        $this->contactEntityRepository->save($model);
+        try {
+            $this->contactEntityRepository->save($model);
+        } catch (\Magento\Framework\Validator\Exception $e) {
+            $this->messageManager->addErrorMessage($e->getMessage());
+        }
     }
 }
