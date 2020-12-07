@@ -60,11 +60,15 @@ interface ContactEntityInterface
     public function getName() : string;
 
     /**
+     * Get Email
+     *
      * @return string
      */
     public function getEmail() : string;
 
     /**
+     * Get Telephone
+     *
      * @return string|null
      */
     public function getTelephone();
