@@ -10,12 +10,10 @@
 
 namespace Smile\Contact\Observer;
 
-use Magento\Contact\Block\ContactForm;
 use Magento\Customer\Model\Session;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
-use Magento\Framework\View\Page\Config;
 use Magento\Framework\Message\ManagerInterface;
 use Smile\Contact\Api\ContactEntityRepositoryInterface;
 use Smile\Contact\Api\Data\ContactEntityInterface;
@@ -28,11 +26,6 @@ use Smile\Contact\Api\Data\ContactEntityInterfaceFactory;
  */
 class CustomerForm implements ObserverInterface
 {
-
-    /**
-     * @var ContactForm
-     */
-    protected $contactForm;
 
     /**
      * @var ContactEntityRepositoryInterface
@@ -48,11 +41,6 @@ class CustomerForm implements ObserverInterface
      * @var Session
      */
     protected $customerSession;
-
-    /**
-     * @var Config
-     */
-    protected $config;
 
     /**
      * @var ManagerInterface
@@ -74,15 +62,11 @@ class CustomerForm implements ObserverInterface
         ContactEntityRepositoryInterface $contactEntityRepository,
         ContactEntityInterfaceFactory $contactEntityFactory,
         Session $customerSession,
-        ContactForm $contactForm,
-        Config $config,
         ManagerInterface $messageManager
     ) {
-        $this->contactForm = $contactForm;
         $this->contactEntityRepository = $contactEntityRepository;
         $this->contactEntityFactory = $contactEntityFactory;
         $this->customerSession = $customerSession;
-        $this->config = $config;
         $this->messageManager = $messageManager;
     }
 
