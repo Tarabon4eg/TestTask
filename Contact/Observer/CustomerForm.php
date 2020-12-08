@@ -83,10 +83,10 @@ class CustomerForm implements ObserverInterface
         $model = $this->contactEntityFactory->create();
         $model->setCustomerId($this->customerSession->getCustomerId())
             ->setIsProcessed(ContactEntityInterface::NO)
-            ->setName($request['name'])
-            ->setEmail($request['email'])
-            ->setTelephone($request['telephone'])
-            ->setComment($request['comment']);
+            ->setName(isset($request['name']) ? $request['name'] : null)
+            ->setEmail(isset($request['email']) ? $request['email'] : null)
+            ->setTelephone(isset($request['telephone']) ? $request['telephone'] : null)
+            ->setComment(isset($request['comment']) ? $request['comment'] : null);
         try {
             $this->contactEntityRepository->save($model);
         } catch (\Magento\Framework\Validator\Exception $e) {
