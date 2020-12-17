@@ -32,11 +32,15 @@ class Delete extends AbstractAction implements HttpPostActionInterface
     const SAVE_ACL_RESOURCE = 'Smile_Contact::contact_entity_delete';
 
     /**
+     * ContactEntity Interface Factory
+     *
      * @var ContactEntityInterfaceFactory
      */
     protected $contactEntityInterfaceFactory;
 
     /**
+     * ContactEntity Repository Interface
+     *
      * @var ContactEntityRepositoryInterface
      */
     protected $contactEntityRepository;

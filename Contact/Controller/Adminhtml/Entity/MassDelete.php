@@ -26,20 +26,28 @@ use Smile\Contact\Api\ContactEntityRepositoryInterface;
 class MassDelete extends \Magento\Backend\App\Action
 {
     /**
+     * Filter
+     *
      * @var Filter
      */
     protected $filter;
 
     /**
+     * ContactEntity Collection Factory
+     *
      * @var CollectionFactory
      */
     protected $collectionFactory;
     /**
+     * ContactEntity Repository Interface
+     *
      * @var ContactEntityRepositoryInterface
      */
     private $contactEntityRepository;
 
     /**
+     * Logger Interface
+     *
      * @var LoggerInterface
      */
     private $logger;

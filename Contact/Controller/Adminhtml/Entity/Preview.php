@@ -29,6 +29,8 @@ class Preview extends AbstractAction implements HttpGetActionInterface
     const PREVIEW_ACL_RESOURCE = 'Smile_Contact::contact_entity_preview';
 
     /**
+     * Page Factory
+     *
      * @var PageFactory
      */
     protected $resultPageFactory;

@@ -26,23 +26,30 @@ use Smile\Contact\Api\Data\ContactEntityInterfaceFactory;
  */
 class CustomerForm implements ObserverInterface
 {
-
     /**
+     * ContactEntity Repository Interface
+     *
      * @var ContactEntityRepositoryInterface
      */
     protected $contactEntityRepository;
 
     /**
+     * ContactEntity Interface Factory
+     *
      * @var ContactEntityInterfaceFactory
      */
     protected $contactEntityFactory;
 
     /**
+     * Session
+     *
      * @var Session
      */
     protected $customerSession;
 
     /**
+     * Manager Interface
+     *
      * @var ManagerInterface
      */
     protected $messageManager;
@@ -51,11 +58,9 @@ class CustomerForm implements ObserverInterface
     /**
      * CustomerForm constructor
      *
-     * @param ContactForm $contactForm
      * @param ContactEntityRepositoryInterface $contactEntityRepository
      * @param ContactEntityInterfaceFactory $contactEntityFactory
      * @param Session $customerSession
-     * @param Config $config
      * @param ManagerInterface $messageManager
      */
     public function __construct(

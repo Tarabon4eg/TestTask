@@ -22,11 +22,15 @@ use Smile\Contact\Model\ResourceModel\ContactEntity\CollectionFactory as Contact
 class DataProvider extends AbstractDataProvider
 {
     /**
+     * Loaded Data
+     *
      * @var array
      */
     protected $_loadedData = [];
 
     /**
+     * ContactEntity Collection Factory
+     *
      * @var ContactEntityCollectionFactory
      */
     protected $contactEntityCollectionFactory;

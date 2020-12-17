@@ -29,6 +29,8 @@ class Index extends AbstractAction implements HttpGetActionInterface
     const GRID_VIEW_ACL_RESOURCE = 'Smile_Contact::contact_entity_grid';
 
     /**
+     * Page Factory
+     *
      * @var PageFactory
      */
     protected $resultPageFactory;

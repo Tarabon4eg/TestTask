@@ -23,6 +23,8 @@ use Magento\Ui\Component\Listing\Columns\Column;
 class ContactEntityActions extends Column
 {
     /**
+     * Url Interface
+     *
      * @var UrlInterface
      */
     protected $urlBuilder;

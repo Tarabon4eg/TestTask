@@ -29,6 +29,8 @@ class Edit extends AbstractAction implements HttpGetActionInterface
     const VIEW_ACL_RESOURCE = 'Smile_Contact::contact_entity_edit';
 
     /**
+     * Page Factory
+     *
      * @var PageFactory
      */
     protected $resultPageFactory;

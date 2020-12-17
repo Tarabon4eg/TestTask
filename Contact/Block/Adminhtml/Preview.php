@@ -23,11 +23,15 @@ use Smile\Contact\Api\Data\ContactEntityInterface;
 class Preview extends Template
 {
     /**
+     * ContactEntity Repository
+     *
      * @var ContactEntityRepositoryInterface
      */
     protected $repository;
 
     /**
+     * ContactEntity Interface
+     *
      * @var ContactEntityInterface
      */
     protected $_model = null;

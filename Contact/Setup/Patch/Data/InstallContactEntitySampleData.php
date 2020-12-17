@@ -14,7 +14,6 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 
-
 /**
  * Class InstallCustomerSampleData
  * @package Smile\Contact\Setup\Patch\Data
@@ -22,16 +21,22 @@ use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 class InstallContactEntitySampleData implements DataPatchInterface
 {
     /**
+     * Csv reader
+     *
      * @var \Magento\Framework\File\Csv
      */
     protected $csvReader;
 
     /**
+     * Fixture Manager
+     *
      * @var \Magento\Framework\Setup\SampleData\FixtureManager
      */
     protected $fixtureManager;
 
     /**
+     * Module Data Setup
+     *
      * @var ModuleDataSetupInterface
      */
     protected $moduleDataSetup;

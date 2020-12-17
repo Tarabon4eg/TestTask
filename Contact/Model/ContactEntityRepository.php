@@ -29,26 +29,36 @@ use Smile\Contact\Model\ResourceModel\ContactEntity\CollectionFactory;
 class ContactEntityRepository implements ContactEntityRepositoryInterface
 {
     /**
+     * Resource Model ContactEntity
+     *
      * @var ResourceModel\ContactEntity
      */
     protected $resourceModel;
 
     /**
+     * ContactEntity Model Factory
+     *
      * @var ContactEntity
      */
     protected $modelFactory;
 
     /**
+     * ContactEntity Collection Factory
+     *
      * @var CollectionFactory
      */
     protected $collectionFactory;
 
     /**
+     * Collection Processor Interface
+     *
      * @var CollectionProcessorInterface
      */
     protected $processor;
 
     /**
+     * SearchResults Interface
+     *
      * @var SearchResultsInterface
      */
     protected $searchResultsFactory;
