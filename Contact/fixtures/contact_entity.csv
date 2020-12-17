@@ -1,0 +1,7 @@
+is_processed,customer_id,name,email,telephone,comment,created_at,reply
+0,2,jack,jack@gmail.com,(333) 555-1234,my computer does not work,2020-12-07 07:54:11,
+0,,john,john@gmail.com,,my smartphone does not work,2020-12-07 08:54:11,
+0,2,mage,mage@gmail.com,,my head does not work,2020-12-07 09:54:11,
+0,,rock,rock@gmail.com,(222) 555-1234,my site does not work,2020-12-07 10:54:11,
+1,,adam,adam@gmail.com,,everything is alright,2020-12-07 11:54:11,ok glad to hear that
+1,1,alex,alex@gmail.com,(555) 555-1234,everything is not alright,2020-12-07 12:54:11,ok sad to hear that
