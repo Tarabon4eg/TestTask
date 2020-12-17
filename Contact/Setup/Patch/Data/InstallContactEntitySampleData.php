@@ -77,7 +77,8 @@ class InstallContactEntitySampleData implements DataPatchInterface
                         'name' => $data['name'],
                         'email' => $data['email'],
                         'comment' => $data['comment'],
-                        'created_at' => $data['created_at']
+                        'created_at' => $data['created_at'],
+                        'reply' => $data['reply']
                     ]
                 );
             }
