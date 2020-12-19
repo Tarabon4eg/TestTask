@@ -5,15 +5,15 @@
  * @category  Smile
  * @package   Smile\Contact
  * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
- * @copyright 2020 Smile
  */
 
 namespace Smile\Contact\Block\Adminhtml;
 
 use Magento\Backend\Block\Template;
 use Magento\Backend\Block\Template\Context;
-use Smile\Contact\Api\ContactEntityRepositoryInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Smile\Contact\Api\Data\ContactEntityInterface;
+use Smile\Contact\ViewModel\ContactEntity as ContactEntityViewModel;
 
 /**
  * Class Preview
@@ -23,45 +23,37 @@ use Smile\Contact\Api\Data\ContactEntityInterface;
 class Preview extends Template
 {
     /**
-     * ContactEntity Repository
+     * ContactEntity View Model
      *
-     * @var ContactEntityRepositoryInterface
+     * @var ContactEntityViewModel
      */
-    protected $repository;
-
-    /**
-     * ContactEntity Interface
-     *
-     * @var ContactEntityInterface
-     */
-    protected $_model = null;
+    protected $contactEntityViewModel;
 
     /**
      * Preview constructor
      *
      * @param Context $context
-     * @param ContactEntityRepositoryInterface $repository
+     * @param ContactEntityViewModel $contactEntityViewModel
      * @param array $data
      */
     public function __construct(
         Context $context,
-        ContactEntityRepositoryInterface $repository,
+        ContactEntityViewModel $contactEntityViewModel,
         array $data = []
     ) {
         parent::__construct($context, $data);
-        $this->repository = $repository;
+        $this->contactEntityViewModel = $contactEntityViewModel;
     }
 
     /**
+     * Get Contact Entity Data
+     *
      * @return ContactEntityInterface
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     *
+     * @throws NoSuchEntityException
      */
-    public function getModel()
+    public function getContactEntityData()
     {
-        if (is_null($this->_model)) {
-            $this->_model = $this->repository->getById($this->getRequest()->getParam(ContactEntityInterface::ID));
-        }
-
-        return $this->_model;
+        return $this->contactEntityViewModel->getContactEntityDataById();
     }
 }

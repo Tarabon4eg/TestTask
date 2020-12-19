@@ -5,16 +5,17 @@
  * @category  Smile
  * @package   Smile\Contact
  * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
- * @copyright 2020 Smile
  */
 
 namespace Smile\Contact\Controller\Adminhtml\Entity;
 
 use Magento\Backend\App\AbstractAction;
-use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\NotFoundException;
 
 /**
  * Class Preview
@@ -38,11 +39,11 @@ class Preview extends AbstractAction implements HttpGetActionInterface
     /**
      * Preview constructor
      *
-     * @param Action\Context $context
+     * @param Context $context
      * @param PageFactory $resultPageFactory
      */
     public function __construct(
-        Action\Context $context,
+        Context $context,
         PageFactory $resultPageFactory
     ) {
         parent::__construct($context);
@@ -52,8 +53,9 @@ class Preview extends AbstractAction implements HttpGetActionInterface
     /**
      * Execute action based on request and return result
      *
-     * @return \Magento\Framework\Controller\ResultInterface|ResponseInterface
-     * @throws \Magento\Framework\Exception\NotFoundException
+     * @return ResultInterface|ResponseInterface
+     *
+     * @throws NotFoundException
      */
     public function execute()
     {

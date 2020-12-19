@@ -5,7 +5,6 @@
  * @category  Smile
  * @package   Smile\Contact
  * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
- * @copyright 2020 Smile
  */
 
 namespace Smile\Contact\Ui\DataProvider\Form;
@@ -26,7 +25,7 @@ class DataProvider extends AbstractDataProvider
      *
      * @var array
      */
-    protected $_loadedData = [];
+    protected $loadedData = [];
 
     /**
      * ContactEntity Collection Factory
@@ -42,6 +41,17 @@ class DataProvider extends AbstractDataProvider
      */
     protected $request;
 
+    /**
+     * ContactEntityActions constructor
+     *
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
+     * @param ContactEntityCollectionFactory $contactEntityCollectionFactory
+     * @param RequestInterface $request
+     * @param array $meta
+     * @param array $data
+     */
     public function __construct(
         $name,
         $primaryFieldName,
@@ -63,16 +73,16 @@ class DataProvider extends AbstractDataProvider
      */
     public function getData()
     {
-        if (!empty($this->_loadedData)) {
-            return $this->_loadedData;
+        if (!empty($this->loadedData)) {
+            return $this->loadedData;
         }
 
         $this->collection->addFieldToFilter($this->getPrimaryFieldName(), $this->request->getParam($this->getRequestFieldName()));
 
         foreach ($this->getCollection() as $item) {
-            $this->_loadedData[$item->getId()] = $item->getData();
+            $this->loadedData[$item->getId()] = $item->getData();
         }
 
-        return $this->_loadedData;
+        return $this->loadedData;
     }
 }

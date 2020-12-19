@@ -5,7 +5,6 @@
  * @category  Smile
  * @package   Smile\Contact
  * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
- * @copyright 2020 Smile
  */
 
 namespace Smile\Contact\Ui\Component\Listing\Columns;
@@ -53,6 +52,7 @@ class ContactEntityActions extends Column
      * Prepare Data Source
      *
      * @param array $dataSource
+     *
      * @return array
      */
     public function prepareDataSource(array $dataSource)

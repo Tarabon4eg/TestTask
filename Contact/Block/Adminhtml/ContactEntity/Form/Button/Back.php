@@ -5,7 +5,6 @@
  * @category  Smile
  * @package   Smile\Contact
  * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
- * @copyright 2020 Smile
  */
 
 namespace Smile\Contact\Block\Adminhtml\ContactEntity\Form\Button;
@@ -33,12 +32,13 @@ class Back extends Generic implements ButtonProviderInterface
             'sort_order' => 10
         ];
     }
+
     /**
      * Get URL for back
      *
      * @return string
      */
-    private function getBackUrl()
+    protected function getBackUrl()
     {
         if ($this->context->getRequestParam('Id')) {
             return $this->getUrl(
@@ -46,6 +46,7 @@ class Back extends Generic implements ButtonProviderInterface
                 ['id' => $this->context->getRequestParam('Id')]
             );
         }
+
         return $this->getUrl('*/*/');
     }
 }

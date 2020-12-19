@@ -5,7 +5,6 @@
  * @category  Smile
  * @package   Smile\Contact
  * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
- * @copyright 2020 Smile
  */
 
 namespace Smile\Contact\Observer;
@@ -15,6 +14,7 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Message\ManagerInterface;
+use Magento\Framework\Validator\Exception;
 use Smile\Contact\Api\ContactEntityRepositoryInterface;
 use Smile\Contact\Api\Data\ContactEntityInterface;
 use Smile\Contact\Api\Data\ContactEntityInterfaceFactory;
@@ -54,7 +54,6 @@ class CustomerForm implements ObserverInterface
      */
     protected $messageManager;
 
-
     /**
      * CustomerForm constructor
      *
@@ -79,7 +78,7 @@ class CustomerForm implements ObserverInterface
      * Storing post data from contact form in database
      *
      * @inheritdoc
-     * @throws \Magento\Framework\Validator\Exception
+     * @throws Exception
      */
     public function execute(Observer $observer)
     {
@@ -94,7 +93,7 @@ class CustomerForm implements ObserverInterface
             ->setComment(isset($request['comment']) ? $request['comment'] : null);
         try {
             $this->contactEntityRepository->save($model);
-        } catch (\Magento\Framework\Validator\Exception $e) {
+        } catch (Exception $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         }
     }

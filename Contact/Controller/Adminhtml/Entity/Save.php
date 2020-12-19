@@ -5,16 +5,17 @@
  * @category  Smile
  * @package   Smile\Contact
  * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
- * @copyright 2020 Smile
  */
 
 namespace Smile\Contact\Controller\Adminhtml\Entity;
 
 use Exception;
 use Magento\Backend\App\AbstractAction;
-use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\NotFoundException;
 use Smile\Contact\Api\ContactEntityRepositoryInterface;
 use Smile\Contact\Api\Data\ContactEntityInterface;
 use Smile\Contact\Api\Data\ContactEntityInterfaceFactory;
@@ -48,12 +49,12 @@ class Save extends AbstractAction implements HttpPostActionInterface
     /**
      * Save constructor
      *
-     * @param Action\Context $context
+     * @param Context $context
      * @param ContactEntityInterfaceFactory $contactEntityInterfaceFactory
      * @param ContactEntityRepositoryInterface $contactEntityRepository
      */
     public function __construct(
-        Action\Context $context,
+        Context $context,
         ContactEntityInterfaceFactory $contactEntityInterfaceFactory,
         ContactEntityRepositoryInterface $contactEntityRepository
     ) {
@@ -65,9 +66,10 @@ class Save extends AbstractAction implements HttpPostActionInterface
     /**
      * Execute action based on request and return result
      *
-     * @return \Magento\Framework\Controller\ResultInterface|ResponseInterface
-     * @throws \Magento\Framework\Exception\NotFoundException
-     * @throws \Magento\Framework\Validator\Exception
+     * @return ResultInterface|ResponseInterface
+     *
+     * @throws NotFoundException
+     * @throws Exception
      */
     public function execute()
     {
@@ -79,8 +81,6 @@ class Save extends AbstractAction implements HttpPostActionInterface
         $model->setData($data);
         try {
             $this->contactEntityRepository->save($model);
-        } catch (\Magento\Framework\Validator\Exception $e) {
-            $this->messageManager->addErrorMessage($e->getMessage());
         } catch (Exception $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         }

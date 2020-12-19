@@ -5,7 +5,6 @@
  * @category  Smile
  * @package   Smile\Contact
  * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
- * @copyright 2020 Smile
  */
 
 namespace Smile\Contact\Model\Entity\Attribute;
@@ -16,8 +15,6 @@ use Magento\Framework\Data\OptionSourceInterface;
 
 /**
  * Contact entity status model
- *
- * @api
  */
 class StatusOptions extends AbstractSource implements SourceInterface, OptionSourceInterface
 {
@@ -78,6 +75,7 @@ class StatusOptions extends AbstractSource implements SourceInterface, OptionSou
      * Retrieve option text by option value
      *
      * @param string $optionId
+     *
      * @return string
      */
     public function getOptionText($optionId)

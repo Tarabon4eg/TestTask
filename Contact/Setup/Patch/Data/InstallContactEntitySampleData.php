@@ -5,17 +5,19 @@
  * @category  Smile
  * @package   Smile\Contact
  * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
- * @copyright 2020 Smile
  */
 
 namespace Smile\Contact\Setup\Patch\Data;
 
+use Magento\Framework\File\Csv;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
+use Smile\Contact\Setup\Patch\ReadSampleData;
 
 /**
  * Class InstallCustomerSampleData
+ *
  * @package Smile\Contact\Setup\Patch\Data
  */
 class InstallContactEntitySampleData implements DataPatchInterface
@@ -23,16 +25,16 @@ class InstallContactEntitySampleData implements DataPatchInterface
     /**
      * Csv reader
      *
-     * @var \Magento\Framework\File\Csv
+     * @var Csv
      */
     protected $csvReader;
 
     /**
-     * Fixture Manager
+     * Read SampleData
      *
-     * @var \Magento\Framework\Setup\SampleData\FixtureManager
+     * @var ReadSampleData
      */
-    protected $fixtureManager;
+    protected $readSampleData;
 
     /**
      * Module Data Setup
@@ -42,16 +44,19 @@ class InstallContactEntitySampleData implements DataPatchInterface
     protected $moduleDataSetup;
 
     /**
-     * InstallCustomerSampleData constructor.
+     * InstallContactEntitySampleData constructor
+     *
      * @param SampleDataContext $sampleDataContext
+     * @param ReadSampleData $readSampleData
      * @param ModuleDataSetupInterface $moduleDataSetup
      */
     public function __construct(
         SampleDataContext $sampleDataContext,
+        ReadSampleData $readSampleData,
         ModuleDataSetupInterface $moduleDataSetup
     ) {
-        $this->fixtureManager = $sampleDataContext->getFixtureManager();
         $this->csvReader = $sampleDataContext->getCsvReader();
+        $this->readSampleData = $readSampleData;
         $this->moduleDataSetup = $moduleDataSetup;
     }
 
@@ -60,10 +65,9 @@ class InstallContactEntitySampleData implements DataPatchInterface
      */
     public function apply()
     {
-        $this->moduleDataSetup->startSetup();
+        $fixtureFileName = $this->readSampleData->readCsv();
 
-        $fixtureFile = 'Smile_Contact::fixtures/contact_entity.csv';
-        $fixtureFileName = $this->fixtureManager->getFixture($fixtureFile);
+        $this->moduleDataSetup->startSetup();
 
         if (file_exists($fixtureFileName)) {
             $rows = $this->csvReader->getData($fixtureFileName);

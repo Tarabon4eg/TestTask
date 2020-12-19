@@ -5,25 +5,27 @@
  * @category  Smile
  * @package   Smile\Contact
  * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
- * @copyright 2020 Smile
  */
 
 namespace Smile\Contact\Controller\Adminhtml\Entity;
 
+use Exception;
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\App\Action;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\Component\MassAction\Filter;
+use Magento\Backend\Model\View\Result\Redirect;
 use Psr\Log\LoggerInterface;
-use Smile\Contact\Model\ResourceModel\ContactEntity\CollectionFactory;
 use Smile\Contact\Api\ContactEntityRepositoryInterface;
+use Smile\Contact\Model\ResourceModel\ContactEntity\CollectionFactory;
 
 /**
  * Class MassDelete
  *
  * @package Smile\Contact\Controller\Adminhtml\Entity
  */
-class MassDelete extends \Magento\Backend\App\Action
+class MassDelete extends Action
 {
     /**
      * Filter
@@ -38,19 +40,20 @@ class MassDelete extends \Magento\Backend\App\Action
      * @var CollectionFactory
      */
     protected $collectionFactory;
+
     /**
      * ContactEntity Repository Interface
      *
      * @var ContactEntityRepositoryInterface
      */
-    private $contactEntityRepository;
+    protected $contactEntityRepository;
 
     /**
      * Logger Interface
      *
      * @var LoggerInterface
      */
-    private $logger;
+    protected $logger;
 
     /**
      * MassDelete constructor
@@ -70,8 +73,7 @@ class MassDelete extends \Magento\Backend\App\Action
         parent::__construct($context);
         $this->filter = $filter;
         $this->collectionFactory = $collectionFactory;
-        $this->contactEntityRepository = $contactEntityRepository ?:
-            \Magento\Framework\App\ObjectManager::getInstance()->create(ContactEntityRepositoryInterface::class);
+        $this->contactEntityRepository = $contactEntityRepository;
         $this->logger = $logger ?:
             \Magento\Framework\App\ObjectManager::getInstance()->create(LoggerInterface::class);
     }
@@ -79,8 +81,9 @@ class MassDelete extends \Magento\Backend\App\Action
     /**
      * Execute action
      *
-     * @return \Magento\Backend\Model\View\Result\Redirect
-     * @throws \Magento\Framework\Exception\LocalizedException|\Exception
+     * @return Redirect
+     *
+     * @throws LocalizedException|Exception
      */
     public function execute()
     {
@@ -114,6 +117,7 @@ class MassDelete extends \Magento\Backend\App\Action
         }
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+
         return $resultRedirect->setPath('*/*/');
     }
 }

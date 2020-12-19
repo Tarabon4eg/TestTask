@@ -2,56 +2,56 @@
 /** @var $block \Smile\Contact\Block\Adminhtml\Preview */
 ?>
 
-<h2><?php echo __('Contact Entity Info'); ?></h2>
+<h2><?= __('Contact Entity Info'); ?></h2>
 <fieldset class="admin__fieldset">
     <div class="admin__field">
         <div class="admin__field-label">
             <label>
-                <?php echo __('Contact Name'); ?>
+                <?= __('Contact Name'); ?>
             </label>
         </div>
         <div class="admin__field-control">
-            <?php echo __($block->getModel()->getName()); ?>
+            <?= __($block->getContactEntityData()->getName()); ?>
         </div>
     </div>
     <div class="admin__field">
         <div class="admin__field-label">
             <label>
-                <?php echo __('Contact Email'); ?>
+                <?= __('Contact Email'); ?>
             </label>
         </div>
         <div class="admin__field-control">
-            <?php echo $block->getModel()->getEmail(); ?>
+            <?= $block->getContactEntityData()->getEmail(); ?>
         </div>
     </div>
     <div class="admin__field">
         <div class="admin__field-label">
             <label>
-                <?php echo __('Contact Telephone'); ?>
+                <?= __('Contact Telephone'); ?>
             </label>
         </div>
         <div class="admin__field-control">
-            <?php echo $block->getModel()->getTelephone() != null ? $block->getModel()->getTelephone() : __('No Contact Telephone'); ?>
+            <?= $block->getContactEntityData()->getTelephone() != null ? $block->getContactEntityData()->getTelephone() : __('No Contact Telephone'); ?>
         </div>
     </div>
     <div class="admin__field">
         <div class="admin__field-label">
             <label>
-                <?php echo __('Message'); ?>
+                <?= __('Message'); ?>
             </label>
         </div>
         <div class="admin__field-control">
-            <?php echo $block->getModel()->getComment(); ?>
+            <?= $block->getContactEntityData()->getComment(); ?>
         </div>
     </div>
     <div class="admin__field">
         <div class="admin__field-label">
             <label>
-                <?php echo __('Created at'); ?>
+                <?= __('Created at'); ?>
             </label>
         </div>
         <div class="admin__field-control">
-            <?php echo $block->getModel()->getCreatedAt(); ?>
+            <?= $block->getContactEntityData()->getCreatedAt(); ?>
         </div>
     </div>
 </fieldset>

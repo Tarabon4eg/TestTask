@@ -5,7 +5,6 @@
  * @category  Smile
  * @package   Smile\Contact
  * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
- * @copyright 2020 Smile
  */
 
 namespace Smile\Contact\Block\Adminhtml\ContactEntity\Form\Button;
@@ -54,6 +53,7 @@ class Generic implements ButtonProviderInterface
      *
      * @param string $route
      * @param array $params
+     *
      * @return string
      */
     public function getUrl($route = '', $params = [])

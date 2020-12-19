@@ -5,17 +5,19 @@
  * @category  Smile
  * @package   Smile\Contact
  * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
- * @copyright 2020 Smile
  */
 
 namespace Smile\Contact\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Smile\Contact\Api\Data\ContactEntityInterface;
+
 
 /**
  * Interface ContactEntityRepositoryInterface
  *
- * @package Smile\Contact\Api
+ * @api
  */
 interface ContactEntityRepositoryInterface
 {
@@ -23,23 +25,26 @@ interface ContactEntityRepositoryInterface
      * Get By ID
      *
      * @param int $id
-     * @return \Smile\Contact\Api\Data\ContactEntityInterface
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     *
+     * @return ContactEntityInterface
+     * @throws NoSuchEntityException
      */
     public function getById(int $id);
 
     /**
      * Get List
      *
-     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-     * @return \Smile\Contact\Api\Data\
+     * @param SearchCriteriaInterface $criteria
+     *
+     * @return ContactEntityInterface
      */
     public function getList(SearchCriteriaInterface $criteria);
 
     /**
      * Delete
      *
-     * @param \Smile\Contact\Api\Data\ContactEntityInterface $model
+     * @param ContactEntityInterface $model
+     *
      * @return bool
      */
     public function delete(Data\ContactEntityInterface $model);
@@ -47,8 +52,9 @@ interface ContactEntityRepositoryInterface
     /**
      * Save
      *
-     * @param \Smile\Contact\Api\Data\ContactEntityInterface $model
-     * @return \Smile\Contact\Api\Data\ContactEntityInterface
+     * @param ContactEntityInterface $model
+     *
+     * @return ContactEntityInterface
      */
     public function save(Data\ContactEntityInterface $model);
 }

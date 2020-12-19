@@ -5,7 +5,6 @@
  * @category  Smile
  * @package   Smile\Contact
  * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
- * @copyright 2020 Smile
  */
 
 namespace Smile\Contact\Block\Adminhtml\ContactEntity\Form\Button;
@@ -25,7 +24,6 @@ class Delete extends AbstractCategory implements ButtonProviderInterface
      *
      * @return array
      */
-
     public function getButtonData()
     {
         return [
@@ -39,16 +37,22 @@ class Delete extends AbstractCategory implements ButtonProviderInterface
     }
 
     /**
+     * Get Delete Url
+     *
      * @param array $args
+     *
      * @return string
      */
     public function getDeleteUrl(array $args = [])
     {
         $params = array_merge($this->getDefaultUrlParams(), $args);
+
         return $this->getUrl('contact/entity/delete', $params);
     }
 
     /**
+     * Get Default Url Params
+     *
      * @return array
      */
     protected function getDefaultUrlParams()
